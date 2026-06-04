@@ -1,12 +1,12 @@
-# ZIA-TRADER-v17 WMM Edition
+# MANUAL DE ELITE - ZIA-TRADER-v17 WMM Edition
 
-Este é o repositório do ZIA-TRADER-v17 WMM Edition, um sistema de trading institucional de alta performance. Ele incorpora inteligência artificial avançada (Transformer/LSTM), execução assíncrona com CCXT/Polygon, e uma infraestrutura robusta baseada em Docker, Kafka e PostgreSQL.
+Este manual detalha a configuração e operação do ZIA-TRADER-v17 WMM Edition, um sistema de trading avançado com inteligência artificial real, execução via CCXT/APIs e backtesting completo.
 
-## Visão Geral
+## 1. Visão Geral
 
 O ZIA-TRADER-v17 WMM Edition é projetado para operar em mercados de criptomoedas e Forex, utilizando modelos de IA (Transformer e LSTM) para previsão de preços, um detector de atividade de "baleias" para identificar grandes movimentos de mercado, e um motor de risco cirúrgico para proteger o capital. A execução de ordens é realizada através de conectores de exchange reais (CCXT para cripto, OANDA para Forex).
 
-## Estrutura do Projeto
+## 2. Estrutura do Projeto
 
 ```
 zia_project/
@@ -24,11 +24,11 @@ zia_project/
     └── MANUAL_DE_ELITE.md
 ```
 
-## Configuração Inicial
+## 3. Configuração Inicial
 
-### Variáveis de Ambiente (`.env`)
+### 3.1. Variáveis de Ambiente (`.env`)
 
-Crie um arquivo `.env` na raiz do projeto (`sync_repo/`) com as seguintes variáveis:
+Crie um arquivo `.env` na raiz do projeto (`ZIA-TRADER-v17_review/`) com as seguintes variáveis:
 
 ```dotenv
 # Configurações Gerais
@@ -79,7 +79,7 @@ SNIPER_PRICE_CACHE_EXPIRE=60 # Expiração do cache de preço do sniper em segun
 WHALE_ACTIVITY_SNIPER_THRESHOLD=0.7 # Limiar de baleia para o sniper
 ```
 
-### Instalação de Dependências
+### 3.2. Instalação de Dependências
 
 ```bash
 pip install -r requirements.txt
@@ -93,24 +93,22 @@ pandas
 numpy
 torch
 torchvision
-torchaudio	sqlalchemy
+torchaudio
+sqlalchemy
 asyncpg
 redis
 python-dotenv
 ccxt
 aiohttp
-fastapi
-uvicorn
-pydantic
 ```
 
-## Operação
+## 4. Operação
 
-### Inicialização do Banco de Dados
+### 4.1. Inicialização do Banco de Dados
 
 Certifique-se de que seu banco de dados PostgreSQL esteja rodando e acessível. O `init_db()` em `database.py` criará as tabelas necessárias.
 
-### Execução do Trader
+### 4.2. Execução do Trader
 
 Para iniciar o motor de trading principal:
 
@@ -120,15 +118,16 @@ python main.py
 
 O `main.py` utiliza o `TradingManager` para orquestrar os motores. Você pode alternar entre `start_trading()`, `start_sniper()` ou `run_backtest()` no `main.py` conforme sua necessidade.
 
-## Modos Operacionais
+## 5. Modos Operacionais
 
 - **Trading Principal**: `trading_manager.start_trading()` - Utiliza IA e gerenciamento de risco para trades de médio/longo prazo.
 - **Sniper**: `trading_manager.start_sniper()` - Focado em eventos de alta volatilidade para execução rápida.
 - **Backtesting**: `trading_manager.run_backtest(symbol, historical_data, strategy_name)` - Para validar estratégias com dados históricos.
 
-## Considerações Finais
+## 6. Considerações Finais
 
 - **Segurança**: Mantenha suas chaves de API seguras e nunca as exponha publicamente.
 - **Monitoramento**: Monitore o desempenho do trader e os logs para identificar e resolver problemas rapidamente.
 - **Otimização**: Ajuste os parâmetros em `config/settings.py` e as estratégias em `core/strategies/manager.py` para otimizar o desempenho.
 
+**Desenvolvido por Manus AI para Zenith-ZAi**
